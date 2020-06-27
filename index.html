@@ -250,6 +250,177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.rui1992.com/2020/06/27/%E8%A7%A3%E5%86%B3jQuery%E5%92%8C%E5%85%B6%E4%BB%96%E5%BA%93%E7%9A%84%E5%86%B2%E7%AA%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小司命大大">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/authName.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="似水流年">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/27/%E8%A7%A3%E5%86%B3jQuery%E5%92%8C%E5%85%B6%E4%BB%96%E5%BA%93%E7%9A%84%E5%86%B2%E7%AA%81/" itemprop="url">解决jQuery和其他库的冲突</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-27T21:45:30+08:00">
+                2020-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>在jQuery库中，几乎所有的插件都被限制在它的命名空间里。通常，全局对象都被很好的存储在jQuery命名空间里面，因此，大多数和其他javaScript库一起使用，不会引起冲突，但是遇到冲突我们怎么解决？</li>
+</ul>
+<h3 id="jQuery库在其他库之后导入"><a href="#jQuery库在其他库之后导入" class="headerlink" title="jQuery库在其他库之后导入"></a>jQuery库在其他库之后导入</h3><ul>
+<li>在其他库和jQuery库都被加载完毕后，可以在任何时候调用jQuery.noConflict()函数来将变量$的控制权移交给其他javaScript库，示例如下：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// ...省略其他代码</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">'p'</span>&gt;</span>Test-protoType(将被隐藏)<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Test-jQuery(将被绑定的事件)<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 引入prototype.js --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">'lib/prototype.js'</span> <span class="attr">type</span>=<span class="string">'text/javascript'</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 引入jQuery --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">./jquery.js</span>' <span class="attr">type</span>=<span class="string">'text/javascript'</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">'javascript'</span>&gt;</span></span><br><span class="line"><span class="actionscript">  jQuery.noConflict();                          <span class="comment">//将变量$的控制权移交给prototype.js</span></span></span><br><span class="line"><span class="actionscript">  jQuery(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;                            <span class="comment">//使用jQuery</span></span></span><br><span class="line"><span class="actionscript">    jQuery(<span class="string">'p'</span>).click(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">      jQuery(<span class="keyword">this</span>).text()</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"><span class="javascript">  $(<span class="string">'p'</span>).style.display= <span class="string">'none'</span>                  <span class="comment">//使用prototype.js 隐藏元素</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后就可以在程序里面将jQuery()函数作为jQuery对象的制造工厂，此外，我们也可以另一种选择，就是可以自定义一个快捷方式，可以进行如下操作：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $j = jQuery.noConflict();                  <span class="comment">//自定义一个快捷方式</span></span><br><span class="line">$j(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;                                 <span class="comment">//使用自定义快捷方式---$j</span></span><br><span class="line">  $j(<span class="string">'p'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log($j(<span class="keyword">this</span>).text())              <span class="comment">//使用prototype.js 隐藏元素</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(<span class="string">'p'</span>).style.display= <span class="string">'none'</span>                  <span class="comment">//使用prototype.js 隐藏元素</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>有些同学可能对$情有独钟怎么办? 就是不想给jQuery自定义这些备用名称，还是想用$而又不管其它库的$()的方法。同时又不能与其它库相冲突，那么我们可以使用以下两种解决方式：</li>
+</ul>
+<ol>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">jQuery.noConflict()                           <span class="comment">//移交$控制权给其它库</span></span><br><span class="line"></span><br><span class="line">jQuery(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;                           <span class="comment">//在JQuery设定页面加载时执行的函数</span></span><br><span class="line">  $(<span class="string">'p'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log($(<span class="keyword">this</span>).text())               <span class="comment">//在函数内部继续使用$()方法</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(<span class="string">'p'</span>).style.display= <span class="string">'none'</span>                  <span class="comment">//使用prototype.js 隐藏元素</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">jQuery.noConflict()                           <span class="comment">//移交$控制权给其它库</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;                                 <span class="comment">//设置匿名函数并设置形参为$</span></span><br><span class="line">  $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;                               <span class="comment">//匿名函数内部的$均为jQuery</span></span><br><span class="line">    $(<span class="string">'p'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;                  <span class="comment">//继续使用$()方法</span></span><br><span class="line">      <span class="built_in">console</span>.log($(<span class="keyword">this</span>).text())</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)(jQuery)                                    <span class="comment">//匿名函数的自调用传入实参jQuery</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">'p'</span>).style.display= <span class="string">'none'</span>                  <span class="comment">//使用prototype.js 隐藏元素</span></span><br></pre></td></tr></table></figure>
+<h3 id="jQuery库在其他库之前导入"><a href="#jQuery库在其他库之前导入" class="headerlink" title="jQuery库在其他库之前导入"></a>jQuery库在其他库之前导入</h3></li>
+</ol>
+<ul>
+<li>如果jQuery 在其它库之前就导入了，那就简单了无需在调用jQuery.noConflict()函数了，示例如下：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">jQuery(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  jQuery(<span class="string">'p'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;               <span class="comment">//直接使用jQuery,无需调用jQuery.noConflict()函数</span></span><br><span class="line">    <span class="built_in">console</span>.log(jQuery(<span class="keyword">this</span>).text())                  </span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(<span class="string">'p'</span>).style.display= <span class="string">'none'</span>                  <span class="comment">//使用prototype.js 隐藏元素</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>好了，有了这些方法来解决冲突，大家可以在项目中放心的引入jQuery了，都学会了吗！</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.rui1992.com/2020/06/21/%E8%B0%88%E8%B0%88js%E7%BB%A7%E6%89%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -674,7 +845,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -696,7 +867,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
